@@ -333,7 +333,7 @@ section[id]{scroll-margin-top:94px}
   font-size:18.5px;color:var(--ink);line-height:1.5}
 .about-quote cite{display:block;margin-top:12px;font-style:normal;font-size:13px;
   font-weight:700;letter-spacing:.04em;color:var(--turq)}
-.about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:32px}
+.about-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:32px}
 .about-stats div{padding:18px 14px;border-radius:14px;background:var(--ice-2);
   border:1px solid var(--line);text-align:center}
 .about-stats .v{font-family:"Fraunces",serif;font-size:30px;font-weight:600;
@@ -684,7 +684,7 @@ section[id]{scroll-margin-top:94px}
   .burger{display:grid}
   .header.scrolled .nav{padding:10px 20px}
   .topbar-in{justify-content:center;padding:8px 20px}
-  .hero{min-height:auto}
+  .hero{min-height:100svh}
   .hero-inner{padding-top:128px;padding-bottom:90px}
   .hero h1{font-size:clamp(38px,10vw,58px)}
   .hero-ctas .btn{flex:1}
@@ -694,6 +694,7 @@ section[id]{scroll-margin-top:94px}
   .svc-grid,.team-grid,.promise,.steps{grid-template-columns:1fr}
   .svc.feat{grid-column:auto}
   .about-stats{grid-template-columns:1fr 1fr}
+  .about-shot video{object-position:50% 57%;transform:scale(1.36)}
   .about-badge{left:14px;right:14px;max-width:none;bottom:14px}
   .sec-head h2,.about-body h2{font-size:32px}
   .rev-grid{grid-template-columns:1fr}
@@ -701,6 +702,16 @@ section[id]{scroll-margin-top:94px}
   .msticky{display:flex}
   body{padding-bottom:54px}
   .cta-foot{gap:16px 28px}
+
+  /* mobile flow — programarea în față, apoi costuri & specialități, apoi restul */
+  body{display:flex;flex-direction:column}
+  #contact{order:1}
+  #tarife{order:2}
+  #servicii{order:3}
+  #despre{order:4}
+  #recenzii{order:5}
+  #program{order:6}
+  .footer{order:7}
 }
 
 /* ═══════════════ ONE-SCREEN SECTIONS (desktop) ═══════════════ */
@@ -851,7 +862,7 @@ section[id]{scroll-margin-top:94px}
         0728 054 750
       </a>
       <div class="tb-mid">
-        <span>Luni–Sâmbătă · 8:00–16:00</span>
+        <span>Luni–Joi · 8:00–16:00</span>
         <span>Bd. Nicolae Titulescu 15, Slatina</span>
       </div>
       <a href="#recenzii"><span class="star">★</span> 5.0 · 31 recenzii Google</a>
@@ -895,9 +906,9 @@ section[id]{scroll-margin-top:94px}
     <button class="mmenu-close" id="mclose" aria-label="Închide meniul">&times;</button>
   </div>
   <nav>
-    <a href="#despre"><span>01</span>Despre</a>
+    <a href="#tarife"><span>01</span>Tarife</a>
     <a href="#servicii"><span>02</span>Servicii</a>
-    <a href="#tarife"><span>03</span>Tarife</a>
+    <a href="#despre"><span>03</span>Despre</a>
     <a href="#recenzii"><span>04</span>Recenzii</a>
     <a href="#program"><span>05</span>Program</a>
   </nav>
@@ -905,7 +916,7 @@ section[id]{scroll-margin-top:94px}
   <div class="mmenu-info">
     <b>0728 054 750</b><br>
     Bd. Nicolae Titulescu 15, Slatina, Olt<br>
-    Luni–Sâmbătă · 8:00–16:00
+    Luni–Joi · 8:00–16:00
   </div>
 </div>
 
@@ -1009,7 +1020,6 @@ section[id]{scroll-margin-top:94px}
       <div class="about-stats">
         <div><div class="v"><span data-count="9">0</span></div><div class="k">Ani de activitate</div></div>
         <div><div class="v">5.0<i>★</i></div><div class="k">31 recenzii</div></div>
-        <div><div class="v">EN</div><div class="k">Consultații în engleză</div></div>
       </div>
     </div>
   </div>
@@ -1022,8 +1032,8 @@ section[id]{scroll-margin-top:94px}
     <div class="sec-head reveal">
       <span class="eyebrow">Serviciile clinicii</span>
       <h2 class="display">Tot ce are nevoie zâmbetul tău — <span class="serif-i">sub același acoperiș</span>.</h2>
-      <p>De la prima consultație până la lucrări complexe pe implant. Nu te trimitem
-      în altă parte la jumătatea drumului.</p>
+      <p>De la prima consultație până la lucrări complexe pe implant. Consultăm
+      pacienții și oferim soluții de tratament pentru toate afecțiunile.</p>
     </div>
     <div class="svc-grid">
 
@@ -1043,7 +1053,7 @@ section[id]{scroll-margin-top:94px}
         <span class="tag">Diagnostic &amp; urgențe</span>
         <div class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4M16 2v4M3 10h18"/><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M12 14v4M10 16h4"/></svg></div>
         <h3>Combaterea durerilor</h3>
-        <p>Stabilirea diagnosticului corect este esențială. Tehnica corectă crește șansa de păstrare a dintelui pe termen lung.</p>
+        <p>Stabilirea diagnosticului corect este esențială — cu ajutorul tomografiei CT dentare (CBCT) localizăm exact sursa durerii. Tehnica corectă crește șansa de păstrare a dintelui pe termen lung.</p>
         <span class="more">Află mai multe <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
       </a>
 
@@ -1059,7 +1069,7 @@ section[id]{scroll-margin-top:94px}
         <span class="tag">Implant &amp; extracții</span>
         <div class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M5 9l7-7 7 7M8 22h8"/></svg></div>
         <h3>Chirurgie</h3>
-        <p>Nu lăsa pierderea unui dinte să-ți afecteze încrederea. O soluție poate fi implantul dentar.</p>
+        <p>Nu lăsa pierderea unui dinte să-ți afecteze încrederea. O soluție poate fi implantul dentar, planificat precis pe baza unei tomografii CT dentare (CBCT).</p>
         <span class="more">Află mai multe <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
       </a>
 
@@ -1082,8 +1092,8 @@ section[id]{scroll-margin-top:94px}
     <div class="sec-head center reveal">
       <span class="eyebrow center">Tarife</span>
       <h2 class="display">Prețuri spuse din <span class="serif-i">prima vizită</span>.</h2>
-      <p>Fiecare plan de tratament îți arată costul pe etape, înainte să începem. Fără
-      consultații ascunse și fără surprize la final.</p>
+      <p>La prima consultație stabilim împreună cu pacientul ce plan de tratament urmează,
+      care sunt etapele de lucru și costurile lor.</p>
     </div>
     <div class="price-grid">
 
@@ -1118,6 +1128,11 @@ section[id]{scroll-margin-top:94px}
           <li><span>Retratament molar de minte</span><b>800&nbsp;lei</b></li>
           <li><span>Reparație perforație CIS / MTA</span><b>250&nbsp;lei</b></li>
           <li><span>Tratament cu hidroxid de calciu</span><b>200&nbsp;lei</b></li>
+          <li><span>Build-up perete fracturat (per perete)</span><b>200&nbsp;lei</b></li>
+          <li><span>Armare pivot fibră de sticlă</span><b>200&nbsp;lei</b></li>
+          <li><span>Aplicare MTA</span><b>250&nbsp;lei</b></li>
+          <li><span>Îndepărtare pivot din canal</span><b>250&nbsp;lei</b></li>
+          <li><span>Îndepărtare corp străin din canal</span><b>1000&nbsp;lei</b></li>
         </ul>
       </div>
 
@@ -1131,11 +1146,6 @@ section[id]{scroll-margin-top:94px}
           <li><span>Ablație coroană</span><b>100&nbsp;lei</b></li>
           <li><span>Gingivectomie</span><b>100&nbsp;lei</b></li>
           <li><span>Chiuretaj</span><b>100&nbsp;lei</b></li>
-          <li><span>Build-up perete fracturat (per perete)</span><b>200&nbsp;lei</b></li>
-          <li><span>Armare pivot fibră de sticlă</span><b>200&nbsp;lei</b></li>
-          <li><span>Aplicare MTA</span><b>250&nbsp;lei</b></li>
-          <li><span>Îndepărtare pivot din canal</span><b>250&nbsp;lei</b></li>
-          <li><span>Îndepărtare corp străin din canal</span><b>1000&nbsp;lei</b></li>
         </ul>
       </div>
 
@@ -1229,7 +1239,7 @@ section[id]{scroll-margin-top:94px}
     </div>
     <div class="cta-foot">
       <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Bd. Nicolae Titulescu 15, Slatina</span>
-      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg> Luni–Sâmbătă · 8:00–16:00</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg> Luni–Joi · 8:00–16:00</span>
       <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg> platinumdental10@gmail.com</span>
     </div>
   </div>
@@ -1240,16 +1250,16 @@ section[id]{scroll-margin-top:94px}
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">Program &amp; locație</span>
-      <h2 class="display">Ne găsești în centrul <span class="serif-i">Slatinei</span>.</h2>
-      <p>Bulevardul Nicolae Titulescu 15 — în apropierea principalelor centre comerciale.</p>
+      <h2 class="display">Ne găsești în <span class="serif-i">orașul de jos</span>.</h2>
+      <p>Vizavi de catedrală, pe Bulevardul Nicolae Titulescu 15 — ușor de ajuns, în centrul Slatinei.</p>
     </div>
     <div class="prog-grid">
       <div class="reveal">
         <div class="hours-card">
           <h3>Program de lucru</h3>
           <p class="sub">Programările sunt recomandate pentru a aloca timpul potrivit fiecărui pacient.</p>
-          <div class="hrow" data-day="1,2,3,4,5,6"><span class="d">Luni – Sâmbătă</span><span class="t">8:00 – 16:00</span></div>
-          <div class="hrow" data-day="0"><span class="d">Duminică</span><span class="t closed">Închis</span></div>
+          <div class="hrow" data-day="1,2,3,4"><span class="d">Luni – Joi</span><span class="t">8:00 – 16:00</span></div>
+          <div class="hrow" data-day="5,6,0"><span class="d">Vineri – Duminică</span><span class="t closed">Închis</span></div>
           <div class="contact-list">
             <a href="tel:+40728054750">
               <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg></span>
@@ -1314,9 +1324,8 @@ section[id]{scroll-margin-top:94px}
       <div>
         <h4>Program</h4>
         <div class="foot-hours">
-          <div><span>Luni – Vineri</span><b>8:00 – 16:00</b></div>
-          <div><span>Sâmbătă</span><b>8:00 – 16:00</b></div>
-          <div><span>Duminică</span><b>Închis</b></div>
+          <div><span>Luni – Joi</span><b>8:00 – 16:00</b></div>
+          <div><span>Vineri – Duminică</span><b>Închis</b></div>
         </div>
         <a href="#contact" class="btn btn-turq" style="margin-top:18px;width:100%;padding:12px">Programează-te</a>
       </div>
@@ -1362,7 +1371,7 @@ section[id]{scroll-margin-top:94px}
   },
   "geo":{"@type":"GeoCoordinates","latitude":44.431919,"longitude":24.355544},
   "openingHoursSpecification":[
-    {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"08:00","closes":"16:00"}
+    {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday"],"opens":"08:00","closes":"16:00"}
   ],
   "medicalSpecialty":["Endodontic","CosmeticDentistry","OralSurgery","Orthodontic"],
   "availableService":[
@@ -1447,7 +1456,7 @@ section[id]{scroll-margin-top:94px}
 
   /* ---- live open/closed status ---- */
   /* schedule: minutes-from-midnight [open, close]; index = JS getDay() (0=Sun) */
-  var schedule = {0:null,1:[480,960],2:[480,960],3:[480,960],4:[480,960],5:[480,960],6:[480,960]};
+  var schedule = {0:null,1:[480,960],2:[480,960],3:[480,960],4:[480,960],5:null,6:null};
   var dayNames = ["duminică","luni","marți","miercuri","joi","vineri","sâmbătă"];
   function fmt(m){
     var h = Math.floor(m/60), mm = m%60;

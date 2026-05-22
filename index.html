@@ -596,9 +596,10 @@ section[id]{scroll-margin-top:94px}
 .rev .who b{display:block;font-size:14.5px;color:var(--ink)}
 .rev .who span{font-size:12.5px;color:var(--muted)}
 .rev .gicon{position:absolute;right:28px;top:30px;width:20px;height:20px;opacity:.85}
-.rev-hint{display:none;text-align:center;margin-top:18px;
+.rev-hint,.svc-hint{display:none;text-align:center;margin-top:18px;
   font-size:12px;font-weight:700;letter-spacing:.14em;
   text-transform:uppercase;color:var(--turq)}
+.svc-hint{color:var(--turq-br);margin-top:6px}
 
 /* ═══════════════ PROGRAM ═══════════════ */
 .prog-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:stretch}
@@ -812,7 +813,7 @@ section[id]{scroll-margin-top:94px}
   }
   .rev-grid::-webkit-scrollbar{display:none}
   .rev{flex:0 0 88%;max-width:380px;scroll-snap-align:start;padding:26px 24px}
-  .rev-hint{display:block}
+  .rev-hint,.svc-hint{display:block}
 
   /* footer — 44px tap targets */
   .foot-grid{grid-template-columns:1fr}
@@ -828,11 +829,11 @@ section[id]{scroll-margin-top:94px}
 
   .cta-foot{gap:16px 28px}
 
-  /* mobile flow — programarea în față, apoi costuri & specialități, apoi restul */
+  /* mobile flow — programarea în față, apoi servicii & costuri, apoi restul */
   body{display:flex;flex-direction:column}
   #contact{order:1}
-  #tarife{order:2}
-  #servicii{order:3}
+  #servicii{order:2}
+  #tarife{order:3}
   #despre{order:4}
   #recenzii{order:5}
   #program{order:6}
@@ -1202,6 +1203,7 @@ section[id]{scroll-margin-top:94px}
       </a>
 
     </div>
+    <p class="svc-hint" aria-hidden="true">← Glisează pentru toate serviciile →</p>
   </div>
 </section>
 

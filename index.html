@@ -398,7 +398,11 @@ section[id]{scroll-margin-top:94px}
   color:var(--turq-br)}
 .svc.feat .more{opacity:1;transform:none;margin-top:16px}
 @media(min-width:761px){
-  .svc.feat{display:grid;grid-template-columns:1fr 1fr;gap:8px 38px;align-items:center}
+  .svc.feat{display:grid;grid-template-columns:1fr 1fr;gap:0}
+  .svc.feat .feat-head,.svc.feat .feat-body{display:flex;flex-direction:column;
+    justify-content:center}
+  .svc.feat .feat-head{padding-right:36px}
+  .svc.feat .feat-body{padding-left:36px;border-left:1px solid rgba(176,137,90,.34)}
   .svc.feat h3{margin-top:16px}
 }
 /* services on a dark band — reuses the Specializări card theme */
@@ -411,38 +415,98 @@ section[id]{scroll-margin-top:94px}
 .dark-sec .svc.feat{border-color:rgba(255,255,255,.12)}
 
 /* ═══════════════ TARIFE ═══════════════ */
-.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-/* price cards — dark-glass panels on the deep-teal pricing band */
-.price-card{position:relative;border-radius:var(--rg);padding:32px 30px;
-  background:rgba(45,47,55,.55);
-  -webkit-backdrop-filter:blur(16px) saturate(1.4);
-  backdrop-filter:blur(16px) saturate(1.4);
-  border:1px solid var(--turq);
-  box-shadow:0 24px 50px -26px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.08);
-  animation:priceFloat 8s ease-in-out infinite}
-.price-grid .price-card{transition:opacity .8s cubic-bezier(.2,.7,.2,1) var(--d,0s),
-  box-shadow .45s ease}
-.price-card:nth-child(2){animation-delay:-2.6s}
-.price-card:nth-child(3){animation-delay:-5.2s}
-.price-card:hover{animation-play-state:paused;border-color:var(--turq-br);
-  box-shadow:0 30px 60px -24px rgba(0,0,0,.72),inset 0 1px 0 rgba(255,255,255,.1)}
 @keyframes priceFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
-.price-head{display:flex;align-items:center;gap:13px;padding-bottom:18px;
-  border-bottom:2px solid var(--turq)}
-.price-head .svc-ic{width:46px;height:46px;border-radius:13px;flex:none;margin:0;
-  background:var(--turq)}
-.price-head .svc-ic svg{width:23px;height:23px;color:#23252b}
-.price-head h3{font-family:"Fraunces",serif;font-size:21px;font-weight:600;color:#fff}
-.price-list{list-style:none;margin-top:4px}
-.price-list li{display:flex;justify-content:space-between;align-items:baseline;gap:18px;
-  padding:13px 0;border-bottom:1px solid rgba(255,255,255,.12);font-size:14px;
-  color:#b6b0a5;line-height:1.5}
-.price-list li:last-child{border-bottom:0;padding-bottom:0}
-.price-list li b{flex:none;font-weight:700;color:#fff;font-size:14.5px;
+@keyframes priceFade{from{opacity:0}to{opacity:1}}
+@keyframes pricePop{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+/* segmented category tabs */
+.price-tabs{display:flex;justify-content:center;margin-bottom:32px}
+.price-tabs-in{display:inline-flex;gap:4px;padding:5px;border-radius:999px;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.price-tab{display:inline-flex;align-items:center;justify-content:center;
+  white-space:nowrap;padding:12px 26px;border-radius:999px;cursor:pointer;
+  font-weight:700;font-size:14px;color:#cdc7bb;
+  transition:background .3s,color .3s,box-shadow .3s}
+.price-tab:hover{color:#fff}
+.price-tab[aria-selected="true"]{background:var(--turq);color:#23252b;
+  box-shadow:0 12px 26px -12px rgba(176,137,90,.85)}
+
+/* one dark-glass panel, swapped per tab */
+.price-stage{max-width:620px;margin:0 auto}
+.price-card{position:relative;border-radius:var(--rg);padding:34px 36px 30px;
+  background:linear-gradient(180deg,#2b2e37,#23262e);
+  border:1px solid rgba(176,137,90,.42);
+  box-shadow:0 34px 64px -34px rgba(0,0,0,.78);
+  overflow:hidden;animation:priceFade .45s ease}
+/* crisp bronze accent along the top edge */
+.price-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,transparent,var(--turq) 16%,var(--turq-br) 50%,
+  var(--turq) 84%,transparent)}
+.price-card[hidden]{display:none}
+.price-card:focus-visible{border-radius:var(--rg)}
+.price-head{display:flex;align-items:center;gap:15px;
+  padding-bottom:20px;margin-bottom:4px;
+  border-bottom:1px solid rgba(176,137,90,.45)}
+.price-head .svc-ic{width:56px;height:56px;border-radius:16px;flex:none;margin:0;
+  display:grid;place-items:center;
+  background:linear-gradient(150deg,var(--turq-br),var(--turq));
+  box-shadow:0 14px 28px -14px rgba(176,137,90,.8)}
+.price-head .svc-ic svg{width:28px;height:28px;color:#23252b}
+.price-head h3{font-family:"Fraunces",serif;font-size:24px;font-weight:600;
+  color:#fff;line-height:1.15}
+.price-head .from{display:block;margin-top:3px;font-size:11.5px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--turq-br)}
+.price-list{list-style:none}
+.price-list li{position:relative;display:flex;justify-content:space-between;
+  align-items:flex-start;gap:22px;padding:17px 2px;
+  font-size:15px;color:#e6decd;line-height:1.55}
+/* faint gradient divider that fades out at both edges */
+.price-list li+li::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.15) 16%,
+  rgba(255,255,255,.15) 84%,transparent)}
+.price-card .price-list li.price-extra{display:none}
+.price-list li b{flex:none;font-weight:700;color:#fff;font-size:15.5px;
   font-variant-numeric:tabular-nums}
-.price-note{margin-top:30px;text-align:center;font-size:13.5px;color:#a8a39a}
-.price-note a{color:var(--turq);font-weight:600;white-space:nowrap}
-#tarife{position:relative}
+.price-more{display:flex;align-items:center;justify-content:center;gap:9px;
+  width:100%;margin-top:22px;min-height:50px;padding:14px 22px;
+  border-radius:999px;cursor:pointer;
+  border:1px solid rgba(176,137,90,.5);background:rgba(176,137,90,.09);
+  color:var(--turq-br);font-weight:700;font-size:13px;
+  letter-spacing:.04em;text-transform:uppercase;
+  transition:background .25s,border-color .25s,color .25s}
+.price-more:hover{background:rgba(176,137,90,.2);border-color:var(--turq-br);color:#fff}
+.price-more svg{width:16px;height:16px;flex:none}
+.price-note{margin-top:28px;text-align:center;font-size:13.5px;color:#a8a39a}
+.price-note a{color:var(--turq-br);font-weight:600;white-space:nowrap}
+
+/* full-list modal */
+.price-modal{position:fixed;inset:0;z-index:120;display:grid;place-items:center;padding:24px}
+.price-modal[hidden]{display:none}
+.price-modal-backdrop{position:absolute;inset:0;background:rgba(16,17,20,.78);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.price-modal-box{position:relative;display:flex;flex-direction:column;
+  width:100%;max-width:540px;max-height:84vh;max-height:84dvh;
+  border-radius:24px;overflow:hidden;
+  background:linear-gradient(165deg,#2d2f37,#23252b);
+  border:1px solid var(--turq);
+  box-shadow:0 50px 90px -28px rgba(0,0,0,.85);
+  animation:pricePop .35s cubic-bezier(.2,.7,.2,1)}
+.price-modal-head{display:flex;align-items:center;gap:14px;flex:none;
+  padding:22px 24px 18px;border-bottom:1px solid rgba(176,137,90,.4)}
+.price-modal-head .svc-ic{width:48px;height:48px;border-radius:14px;flex:none;
+  display:grid;place-items:center;
+  background:linear-gradient(150deg,var(--turq-br),var(--turq))}
+.price-modal-head .svc-ic svg{width:24px;height:24px;color:#23252b}
+.price-modal-head h3{flex:1;font-family:"Fraunces",serif;font-size:21px;
+  font-weight:600;color:#fff}
+.price-modal-close{width:44px;height:44px;border-radius:12px;flex:none;cursor:pointer;
+  background:rgba(255,255,255,.08);color:#fff;display:grid;place-items:center;
+  font-size:26px;line-height:1;transition:background .25s}
+.price-modal-close:hover{background:rgba(255,255,255,.18)}
+.price-modal-list{overflow-y:auto;padding:8px 24px 22px;-webkit-overflow-scrolling:touch}
+#tarife{position:relative;
+  background:radial-gradient(58% 46% at 50% 0%,rgba(176,137,90,.14),transparent 72%),var(--ink)}
 #tarife>.wrap{position:relative;z-index:1}
 /* service cards — dark-glass panels matching the Tarife section */
 #servicii>.wrap{position:relative;z-index:1}
@@ -459,18 +523,19 @@ section[id]{scroll-margin-top:94px}
 #servicii .svc:nth-child(4){animation-delay:-5s}
 #servicii .svc:nth-child(5){animation-delay:-6.6s}
 #servicii .svc:hover{animation-play-state:paused;border-color:var(--turq-br);
-  box-shadow:0 30px 60px -24px rgba(0,0,0,.72),inset 0 1px 0 rgba(255,255,255,.1)}
+  box-shadow:0 30px 60px -24px rgba(0,0,0,.72),
+  0 0 30px -6px rgba(201,160,109,.42),inset 0 1px 0 rgba(255,255,255,.12)}
+#servicii .svc:hover .more{transform:translateX(6px)}
 /* uniform service-card design — every card styled like the featured card 01 */
 #servicii .svc .tag{display:block;position:relative;z-index:1;margin-bottom:12px;
   font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--turq-br)}
 #servicii .svc-ic{background:var(--turq)}
 #servicii .svc-ic svg{color:#23252b}
-#servicii .svc p{font-size:15.5px}
+#servicii .svc p{font-size:15.5px;color:#cdc7bb}
 #servicii .svc .more{opacity:1;transform:none;color:var(--turq-br)}
 /* WebGL liquid-glass: the canvas paints each card panel; shader sits in the script below */
 .glass-canvas{position:absolute;inset:0;width:100%;height:100%;
   z-index:0;display:block;pointer-events:none}
-#tarife.glass-live .price-card,
 #servicii.glass-live .svc{background:transparent;border-color:transparent;
   box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
 
@@ -531,6 +596,9 @@ section[id]{scroll-margin-top:94px}
 .rev .who b{display:block;font-size:14.5px;color:var(--ink)}
 .rev .who span{font-size:12.5px;color:var(--muted)}
 .rev .gicon{position:absolute;right:28px;top:30px;width:20px;height:20px;opacity:.85}
+.rev-hint{display:none;text-align:center;margin-top:18px;
+  font-size:12px;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--turq)}
 
 /* ═══════════════ PROGRAM ═══════════════ */
 .prog-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:stretch}
@@ -684,27 +752,80 @@ section[id]{scroll-margin-top:94px}
   .band{padding:74px 0}
   .band-tight{padding:56px 0}
   .wrap{padding:0 20px}
+  section[id]{scroll-margin-top:78px}
+
+  /* header — only logo + hamburger remain (booking lives in the menu + sticky bar) */
   .nav-links,.topbar,.nav-phone{display:none}
+  .nav-cta>.btn{display:none}
   .burger{display:grid}
+  .nav{padding:14px 20px}
   .header.scrolled .nav{padding:10px 20px}
   .topbar-in{justify-content:center;padding:8px 20px}
+  .brand{min-height:44px}
+  .mmenu .btn{width:100%;min-height:52px}
+
+  /* every button clears the 44px touch target */
+  .btn{min-height:48px}
+
+  /* hero */
   .hero{min-height:100svh}
   .hero-inner{padding-top:128px;padding-bottom:90px}
-  .hero h1{font-size:clamp(38px,10vw,58px)}
-  .hero-ctas .btn{flex:1}
+  .hero h1{font-size:clamp(34px,8.8vw,58px)}
+  .hero-ctas,.cta-ctas{flex-direction:column;margin-top:28px}
+  .hero-ctas .btn,.cta-ctas .btn{width:100%;flex:none}
   .hero-trust>div{flex:1 1 40%;border-right:0;padding-right:0}
-  .hero-card{max-width:none}
   .scroll-cue{display:none}
-  .svc-grid,.team-grid,.promise,.steps{grid-template-columns:1fr}
-  .svc.feat{grid-column:auto}
+
+  /* servicii — peek carousel: centred card sharp, neighbours dimmed */
+  .svc-grid{display:flex;gap:14px;margin:0 -20px;padding:12px 10vw 22px;
+    overflow-x:auto;scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .svc-grid::-webkit-scrollbar{display:none}
+  .svc-grid .svc{flex:0 0 80vw;scroll-snap-align:center;
+    opacity:.42;transform:scale(.9);transition:opacity .4s ease,transform .4s ease}
+  .svc-grid .svc.is-active{opacity:1;transform:scale(1)}
+
+  /* despre */
   .about-stats{grid-template-columns:1fr 1fr}
-  .about-shot video{object-position:50% 57%;transform:scale(1.36)}
+  .about-shot img{object-position:50% 45%}
   .about-badge{left:14px;right:14px;max-width:none;bottom:14px}
-  .sec-head h2,.about-body h2{font-size:32px}
-  .rev-grid{grid-template-columns:1fr}
+  .sec-head h2,.about-body h2{font-size:clamp(26px,7vw,33px)}
+
+  /* servicii — stop the float so cards stay easy to tap */
+  #servicii .svc{animation:none}
+
+  /* tarife — segmented control spans full width */
+  .price-tabs-in{display:flex;width:100%}
+  .price-tab{flex:1;padding:12px 6px;font-size:12.5px}
+  .price-card{padding:26px 22px 24px}
+  .price-list li{gap:16px}
+  .price-note a{display:inline-flex;align-items:center;min-height:44px}
+  .price-modal{padding:14px}
+  .price-modal-list{padding-left:20px;padding-right:20px}
+
+  /* recenzii — native horizontal swipe carousel */
+  .rev-grid{
+    display:flex;gap:14px;overflow-x:auto;
+    scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+    scroll-padding-left:20px;margin:0 -20px;padding:6px 20px 14px;
+    scrollbar-width:none;
+  }
+  .rev-grid::-webkit-scrollbar{display:none}
+  .rev{flex:0 0 88%;max-width:380px;scroll-snap-align:start;padding:26px 24px}
+  .rev-hint{display:block}
+
+  /* footer — 44px tap targets */
   .foot-grid{grid-template-columns:1fr}
-  .msticky{display:flex}
-  body{padding-bottom:54px}
+  .foot-soc a{width:44px;height:44px}
+  .footer ul li{margin-bottom:2px}
+  .footer ul a{display:inline-flex;align-items:center;min-height:44px}
+
+  /* sticky bottom bar — respects the iOS home-indicator safe area */
+  .msticky{display:flex;padding-bottom:env(safe-area-inset-bottom,0px)}
+  .msticky a{min-height:54px;font-size:13px}
+  .msticky svg{width:18px;height:18px}
+  body{padding-bottom:calc(56px + env(safe-area-inset-bottom,0px))}
+
   .cta-foot{gap:16px 28px}
 
   /* mobile flow — programarea în față, apoi costuri & specialități, apoi restul */
@@ -764,7 +885,7 @@ section[id]{scroll-margin-top:94px}
   .svc p{margin-top:8px;font-size:14px}
   .svc .more{margin-top:12px}
   .svc .no{font-size:46px;top:10px}
-  .svc.feat{gap:6px 30px}
+  .svc.feat{gap:0}
   /* servicii is the densest section — extra trim (id-specificity) to clear one screen */
   #servicii .sec-head{margin-bottom:18px}
   #servicii .svc-grid{gap:14px}
@@ -776,15 +897,17 @@ section[id]{scroll-margin-top:94px}
   #servicii .svc .more{margin-top:9px}
 
   /* tarife */
-  .price-grid{gap:18px}
-  .price-card{padding:22px 24px}
-  .price-head{padding-bottom:12px}
-  .price-head .svc-ic{width:40px;height:40px}
-  .price-head .svc-ic svg{width:20px;height:20px}
-  .price-head h3{font-size:19px}
-  .price-list li{padding:7px 0;font-size:13px}
-  .price-list li b{font-size:13.5px}
-  .price-note{margin-top:16px;font-size:12.5px}
+  .price-tabs{margin-bottom:22px}
+  .price-tab{padding:10px 22px;font-size:13.5px}
+  .price-card{padding:24px 30px 22px}
+  .price-head{padding-bottom:14px;gap:13px}
+  .price-head .svc-ic{width:48px;height:48px;border-radius:14px}
+  .price-head .svc-ic svg{width:24px;height:24px}
+  .price-head h3{font-size:21px}
+  .price-list li{padding:11px 2px;font-size:14px}
+  .price-list li b{font-size:14.5px}
+  .price-more{margin-top:14px;min-height:46px;padding:11px 20px}
+  .price-note{margin-top:14px;font-size:12.5px}
 
   /* parcurs */
   .step-no{width:52px;height:52px;font-size:22px}
@@ -987,9 +1110,9 @@ section[id]{scroll-margin-top:94px}
   <div class="wrap about-grid">
     <div class="reveal">
       <div class="shot about-shot">
-        <video src="cabinet-about.mp4" autoplay muted loop playsinline preload="metadata"
-               aria-label="Cabinet stomatologic Platinum Dental, Slatina"
-               onerror="this.closest('.shot').classList.add('noimg')"></video>
+        <img src="about.jpg" alt="Cabinet stomatologic Platinum Dental — Slatina, Olt"
+             loading="lazy" decoding="async"
+             onerror="this.closest('.shot').classList.add('noimg')">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.5 2C5 2 3 4 3 7c0 2 .6 3.7 1.3 5.5.6 1.6.9 3.3 1.1 5 .2 1.6.4 3.4 1.6 3.4 1 0 1.2-1.4 1.5-2.8l.9-4c.05-.22.4-.22.45 0l.9 4c.3 1.4.5 2.8 1.5 2.8 1.2 0 1.4-1.8 1.6-3.4.2-1.7.5-3.4 1.1-5C18.4 10.7 19 9 19 7c0-3-2-5-4.5-5-1.7 0-2.7.8-3.5 1.5C10.2 2.8 9.2 2 7.5 2z"/></svg>
         <div class="about-badge">
           <div class="num">100<span style="font-size:24px">%</span></div>
@@ -1084,7 +1207,6 @@ section[id]{scroll-margin-top:94px}
 
 <!-- ═══════════════ TARIFE ═══════════════ -->
 <section class="band dark-sec" id="tarife">
-  <canvas class="glass-canvas" id="tarifeGlass" aria-hidden="true"></canvas>
   <div class="wrap">
     <div class="sec-head center reveal">
       <span class="eyebrow center">Tarife</span>
@@ -1092,12 +1214,22 @@ section[id]{scroll-margin-top:94px}
       <p>La prima consultație stabilim împreună cu pacientul ce plan de tratament urmează,
       care sunt etapele de lucru și costurile lor.</p>
     </div>
-    <div class="price-grid">
+    <!-- segmented category tabs -->
+    <div class="price-tabs reveal" style="--d:.05s">
+      <div class="price-tabs-in" role="tablist" aria-label="Categorii de tarife">
+        <button class="price-tab" type="button" id="ptab-0" role="tab" aria-selected="true" aria-controls="ppanel-0">Generale</button>
+        <button class="price-tab" type="button" id="ptab-1" role="tab" aria-selected="false" aria-controls="ppanel-1" tabindex="-1">Endodonție</button>
+        <button class="price-tab" type="button" id="ptab-2" role="tab" aria-selected="false" aria-controls="ppanel-2" tabindex="-1">Chirurgie</button>
+      </div>
+    </div>
 
-      <div class="price-card reveal">
+    <div class="price-stage reveal" style="--d:.12s">
+
+      <!-- Servicii generale -->
+      <div class="price-card" id="ppanel-0" role="tabpanel" aria-labelledby="ptab-0" tabindex="0">
         <div class="price-head">
           <div class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M9 16l2 2 4-4"/></svg></div>
-          <h3>Servicii generale</h3>
+          <div><h3>Servicii generale</h3><span class="from">de la 100 lei</span></div>
         </div>
         <ul class="price-list">
           <li><span>Consultație de specialitate</span><b>200&nbsp;lei</b></li>
@@ -1105,16 +1237,21 @@ section[id]{scroll-margin-top:94px}
           <li><span>Tratament de urgență</span><b>100&nbsp;lei</b></li>
           <li><span>Detartraj</span><b>300&nbsp;lei</b></li>
           <li><span>Obturație simplă</span><b>300&nbsp;lei</b></li>
-          <li><span>Tratament endodontic și obturație monocanalicular</span><b>300&nbsp;lei</b></li>
-          <li><span>Retratament monocanalicular</span><b>400&nbsp;lei</b></li>
           <li><span>Coroană zirconiu</span><b>1200&nbsp;lei</b></li>
+          <li class="price-extra"><span>Tratament endodontic și obturație monocanalicular</span><b>300&nbsp;lei</b></li>
+          <li class="price-extra"><span>Retratament monocanalicular</span><b>400&nbsp;lei</b></li>
         </ul>
+        <button class="price-more" type="button" data-modal>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
+          Vezi lista completă (8)
+        </button>
       </div>
 
-      <div class="price-card reveal" style="--d:.08s">
+      <!-- Endodonție -->
+      <div class="price-card" id="ppanel-1" role="tabpanel" aria-labelledby="ptab-1" tabindex="0" hidden>
         <div class="price-head">
           <div class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg></div>
-          <h3>Endodonție</h3>
+          <div><h3>Endodonție</h3><span class="from">de la 400 lei</span></div>
         </div>
         <ul class="price-list">
           <li><span>Tratament endodontic și obturație bicanalicular</span><b>400&nbsp;lei</b></li>
@@ -1123,20 +1260,25 @@ section[id]{scroll-margin-top:94px}
           <li><span>Retratament molar</span><b>700&nbsp;lei</b></li>
           <li><span>Tratament endodontic și obturație molar de minte</span><b>700&nbsp;lei</b></li>
           <li><span>Retratament molar de minte</span><b>800&nbsp;lei</b></li>
-          <li><span>Reparație perforație CIS / MTA</span><b>250&nbsp;lei</b></li>
-          <li><span>Tratament cu hidroxid de calciu</span><b>200&nbsp;lei</b></li>
-          <li><span>Build-up perete fracturat (per perete)</span><b>200&nbsp;lei</b></li>
-          <li><span>Armare pivot fibră de sticlă</span><b>200&nbsp;lei</b></li>
-          <li><span>Aplicare MTA</span><b>250&nbsp;lei</b></li>
-          <li><span>Îndepărtare pivot din canal</span><b>250&nbsp;lei</b></li>
-          <li><span>Îndepărtare corp străin din canal</span><b>1000&nbsp;lei</b></li>
+          <li class="price-extra"><span>Reparație perforație CIS / MTA</span><b>250&nbsp;lei</b></li>
+          <li class="price-extra"><span>Tratament cu hidroxid de calciu</span><b>200&nbsp;lei</b></li>
+          <li class="price-extra"><span>Build-up perete fracturat (per perete)</span><b>200&nbsp;lei</b></li>
+          <li class="price-extra"><span>Armare pivot fibră de sticlă</span><b>200&nbsp;lei</b></li>
+          <li class="price-extra"><span>Aplicare MTA</span><b>250&nbsp;lei</b></li>
+          <li class="price-extra"><span>Îndepărtare pivot din canal</span><b>250&nbsp;lei</b></li>
+          <li class="price-extra"><span>Îndepărtare corp străin din canal</span><b>1000&nbsp;lei</b></li>
         </ul>
+        <button class="price-more" type="button" data-modal>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
+          Vezi lista completă (13)
+        </button>
       </div>
 
-      <div class="price-card reveal" style="--d:.16s">
+      <!-- Chirurgie & protetică -->
+      <div class="price-card" id="ppanel-2" role="tabpanel" aria-labelledby="ptab-2" tabindex="0" hidden>
         <div class="price-head">
           <div class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 4 3 12h14l3-12-6 7-4-7-4 7-6-7z"/><path d="M5 20h14"/></svg></div>
-          <h3>Chirurgie &amp; protetică</h3>
+          <div><h3>Chirurgie &amp; protetică</h3><span class="from">de la 100 lei</span></div>
         </div>
         <ul class="price-list">
           <li><span>Coroană metalo-ceramică</span><b>750&nbsp;lei</b></li>
@@ -1167,7 +1309,7 @@ section[id]{scroll-margin-top:94px}
         </div>
       </div>
     </div>
-    <div class="rev-grid">
+    <div class="rev-grid" role="region" aria-label="Recenzii de la pacienți" tabindex="0">
 
       <article class="rev reveal">
         <svg class="gicon" viewBox="0 0 24 24"><path fill="#b0895a" d="M22.5 12.2c0-.7-.1-1.4-.2-2H12v3.9h5.9a5 5 0 0 1-2.2 3.3v2.7h3.6c2.1-2 3.2-4.9 3.2-7.9z"/><path fill="#cdb088" d="M12 23c2.9 0 5.4-1 7.2-2.6l-3.6-2.7c-1 .7-2.3 1-3.6 1-2.8 0-5.1-1.9-6-4.4H2.3v2.8A11 11 0 0 0 12 23z"/></svg>
@@ -1214,6 +1356,7 @@ section[id]{scroll-margin-top:94px}
       </article>
 
     </div>
+    <p class="rev-hint" aria-hidden="true">← Glisează pentru toate recenziile →</p>
   </div>
 </section>
 
@@ -1343,6 +1486,19 @@ section[id]{scroll-margin-top:94px}
     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.95L2 22l5.2-1.36A9.9 9.9 0 1 0 12.04 2zm0 1.8a8.1 8.1 0 1 1-4.13 15.06l-.3-.17-3.08.8.82-3-.2-.31A8.1 8.1 0 0 1 12.04 3.8z"/></svg>
     WhatsApp
   </a>
+</div>
+
+<!-- ═══════════════ TARIFE — full-list modal ═══════════════ -->
+<div class="price-modal" id="priceModal" hidden>
+  <div class="price-modal-backdrop" data-close></div>
+  <div class="price-modal-box" role="dialog" aria-modal="true" aria-labelledby="priceModalTitle">
+    <div class="price-modal-head">
+      <div class="svc-ic" id="priceModalIcon" aria-hidden="true"></div>
+      <h3 id="priceModalTitle">Tarife</h3>
+      <button class="price-modal-close" id="priceModalClose" type="button" data-close aria-label="Închide lista de tarife">&times;</button>
+    </div>
+    <div class="price-modal-list" id="priceModalList" tabindex="0"></div>
+  </div>
 </div>
 
 <!-- ═══════════════ JSON-LD ═══════════════ -->
@@ -1512,6 +1668,116 @@ section[id]{scroll-margin-top:94px}
     var v = document.getElementById("heroVid");
     if(v){ v.removeAttribute("autoplay"); v.pause(); }
   }
+
+  /* ---- tarife: tabbed price panels + full-list modal ---- */
+  (function(){
+    var tabs   = [].slice.call(document.querySelectorAll(".price-tab"));
+    var panels = [].slice.call(document.querySelectorAll(".price-card[role='tabpanel']"));
+    if(tabs.length && panels.length){
+      function selectTab(i, moveFocus){
+        tabs.forEach(function(t, j){
+          t.setAttribute("aria-selected", j === i ? "true" : "false");
+          t.tabIndex = j === i ? 0 : -1;
+        });
+        panels.forEach(function(p, j){
+          if(j === i) p.removeAttribute("hidden");
+          else p.setAttribute("hidden", "");
+        });
+        if(moveFocus) tabs[i].focus();
+      }
+      tabs.forEach(function(tab, i){
+        tab.addEventListener("click", function(){ selectTab(i, false); });
+        tab.addEventListener("keydown", function(e){
+          var to = null;
+          if(e.key === "ArrowRight" || e.key === "ArrowDown") to = (i + 1) % tabs.length;
+          else if(e.key === "ArrowLeft" || e.key === "ArrowUp") to = (i - 1 + tabs.length) % tabs.length;
+          else if(e.key === "Home") to = 0;
+          else if(e.key === "End") to = tabs.length - 1;
+          if(to !== null){ e.preventDefault(); selectTab(to, true); }
+        });
+      });
+    }
+
+    var modal = document.getElementById("priceModal");
+    if(modal){
+      var mList  = document.getElementById("priceModalList");
+      var mTitle = document.getElementById("priceModalTitle");
+      var mIcon  = document.getElementById("priceModalIcon");
+      var mClose = document.getElementById("priceModalClose");
+      var opener = null;
+
+      function openModal(panel){
+        var head = panel.querySelector(".price-head");
+        var h3 = head && head.querySelector("h3");
+        var ic = head && head.querySelector(".svc-ic");
+        mTitle.textContent = h3 ? h3.textContent : "Tarife";
+        mIcon.innerHTML = ic ? ic.innerHTML : "";
+        mList.innerHTML = "";
+        mList.appendChild(panel.querySelector(".price-list").cloneNode(true));
+        opener = document.activeElement;
+        modal.removeAttribute("hidden");
+        document.body.style.overflow = "hidden";
+        mClose.focus();
+      }
+      function closeModal(){
+        modal.setAttribute("hidden", "");
+        document.body.style.overflow = "";
+        if(opener && opener.focus) opener.focus();
+      }
+      document.querySelectorAll(".price-more[data-modal]").forEach(function(btn){
+        btn.addEventListener("click", function(){
+          var panel = btn.closest(".price-card");
+          if(panel) openModal(panel);
+        });
+      });
+      modal.querySelectorAll("[data-close]").forEach(function(el){
+        el.addEventListener("click", closeModal);
+      });
+      document.addEventListener("keydown", function(e){
+        if(e.key === "Escape" && !modal.hasAttribute("hidden")) closeModal();
+      });
+      modal.addEventListener("keydown", function(e){
+        if(e.key !== "Tab") return;
+        var stops = [mClose, mList];
+        var idx = stops.indexOf(document.activeElement);
+        if(idx === -1) idx = 0;
+        e.preventDefault();
+        stops[e.shiftKey ? (idx - 1 + stops.length) % stops.length : (idx + 1) % stops.length].focus();
+      });
+    }
+  })();
+
+  /* ---- servicii: mobile peek-carousel — illuminate the centred card ---- */
+  (function(){
+    var grid = document.querySelector(".svc-grid");
+    if(!grid) return;
+    var cards = [].slice.call(grid.querySelectorAll(".svc"));
+    if(!cards.length) return;
+    var mq = window.matchMedia("(max-width:760px)");
+    function update(){
+      var gr = grid.getBoundingClientRect(), mid = gr.left + gr.width / 2;
+      var best = null, bd = Infinity;
+      cards.forEach(function(c){
+        var r = c.getBoundingClientRect();
+        var d = Math.abs(r.left + r.width / 2 - mid);
+        if(d < bd){ bd = d; best = c; }
+      });
+      cards.forEach(function(c){ c.classList.toggle("is-active", c === best); });
+    }
+    var ticking = false;
+    grid.addEventListener("scroll", function(){
+      if(!mq.matches || ticking) return;
+      ticking = true;
+      requestAnimationFrame(function(){ update(); ticking = false; });
+    }, {passive:true});
+    function sync(){
+      if(mq.matches) update();
+      else cards.forEach(function(c){ c.classList.remove("is-active"); });
+    }
+    sync();
+    if(mq.addEventListener) mq.addEventListener("change", sync);
+    window.addEventListener("resize", sync, {passive:true});
+  })();
 })();
 </script>
 
@@ -1700,8 +1966,10 @@ section[id]{scroll-margin-top:94px}
     window.addEventListener("resize", render);
   }
 
-  liquidGlass("tarife",   "tarifeGlass",   ".price-card", 0);
-  liquidGlass("servicii", "serviciiGlass", ".svc",        1);
+  /* tarife is a solid panel now — WebGL glass paints only the Servicii cards (desktop) */
+  if(!window.matchMedia("(max-width:760px)").matches){
+    liquidGlass("servicii", "serviciiGlass", ".svc", 1);
+  }
 })();
 </script>
 </body>

@@ -1255,6 +1255,7 @@ section[id]{scroll-margin-top:94px}
         <button class="price-tab" type="button" id="ptab-0" role="tab" aria-selected="true" aria-controls="ppanel-0">Generale</button>
         <button class="price-tab" type="button" id="ptab-1" role="tab" aria-selected="false" aria-controls="ppanel-1" tabindex="-1">Endodonție</button>
         <button class="price-tab" type="button" id="ptab-2" role="tab" aria-selected="false" aria-controls="ppanel-2" tabindex="-1">Chirurgie</button>
+        <button class="price-tab" type="button" id="ptab-3" role="tab" aria-selected="false" aria-controls="ppanel-3" tabindex="-1">Protetică</button>
       </div>
     </div>
 
@@ -1272,23 +1273,19 @@ section[id]{scroll-margin-top:94px}
           <li><span>Tratament de urgență</span><b>100&nbsp;lei</b></li>
           <li><span>Detartraj</span><b>300&nbsp;lei</b></li>
           <li><span>Obturație simplă</span><b>300&nbsp;lei</b></li>
-          <li><span>Coroană zirconiu</span><b>1200&nbsp;lei</b></li>
-          <li class="price-extra"><span>Tratament endodontic și obturație monocanalicular</span><b>300&nbsp;lei</b></li>
-          <li class="price-extra"><span>Retratament monocanalicular</span><b>400&nbsp;lei</b></li>
+          <li><span>Obturație estetică</span><b>500&nbsp;lei</b></li>
         </ul>
-        <button class="price-more" type="button" data-modal>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
-          Vezi lista completă (8)
-        </button>
       </div>
 
       <!-- Endodonție -->
       <div class="price-card" id="ppanel-1" role="tabpanel" aria-labelledby="ptab-1" tabindex="0" hidden>
         <div class="price-head">
           <div class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg></div>
-          <div><h3>Endodonție</h3><span class="from">de la 400 lei</span></div>
+          <div><h3>Endodonție</h3><span class="from">de la 300 lei</span></div>
         </div>
         <ul class="price-list">
+          <li><span>Tratament endodontic și obturație monocanalicular</span><b>300&nbsp;lei</b></li>
+          <li><span>Retratament monocanalicular</span><b>400&nbsp;lei</b></li>
           <li><span>Tratament endodontic și obturație bicanalicular</span><b>400&nbsp;lei</b></li>
           <li><span>Retratament bicanalicular</span><b>500&nbsp;lei</b></li>
           <li><span>Tratament endodontic și obturație molar</span><b>600&nbsp;lei</b></li>
@@ -1305,21 +1302,35 @@ section[id]{scroll-margin-top:94px}
         </ul>
         <button class="price-more" type="button" data-modal>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
-          Vezi lista completă (13)
+          Vezi lista completă (15)
         </button>
       </div>
 
-      <!-- Chirurgie & protetică -->
+      <!-- Chirurgie -->
       <div class="price-card" id="ppanel-2" role="tabpanel" aria-labelledby="ptab-2" tabindex="0" hidden>
         <div class="price-head">
-          <div class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 4 3 12h14l3-12-6 7-4-7-4 7-6-7z"/><path d="M5 20h14"/></svg></div>
-          <div><h3>Chirurgie &amp; protetică</h3><span class="from">de la 100 lei</span></div>
+          <div class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 12h6M12 9v6"/></svg></div>
+          <div><h3>Chirurgie</h3><span class="from">de la 100 lei</span></div>
         </div>
         <ul class="price-list">
-          <li><span>Coroană metalo-ceramică</span><b>750&nbsp;lei</b></li>
-          <li><span>Ablație coroană</span><b>100&nbsp;lei</b></li>
           <li><span>Gingivectomie</span><b>100&nbsp;lei</b></li>
           <li><span>Chiuretaj</span><b>100&nbsp;lei</b></li>
+          <li><span>Inserare implant</span><b>2500&nbsp;lei</b></li>
+        </ul>
+      </div>
+
+      <!-- Protetică -->
+      <div class="price-card" id="ppanel-3" role="tabpanel" aria-labelledby="ptab-3" tabindex="0" hidden>
+        <div class="price-head">
+          <div class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 4 3 12h14l3-12-6 7-4-7-4 7-6-7z"/><path d="M5 20h14"/></svg></div>
+          <div><h3>Protetică</h3><span class="from">de la 100 lei</span></div>
+        </div>
+        <ul class="price-list">
+          <li><span>Coroană zirconiu</span><b>1200&nbsp;lei</b></li>
+          <li><span>Coroană metalo-ceramică</span><b>750&nbsp;lei</b></li>
+          <li><span>Coroană provizorie PMMA</span><b>400&nbsp;lei</b></li>
+          <li><span>Coroană provizorie Scutan (făcută în cabinet)</span><b>200&nbsp;lei</b></li>
+          <li><span>Ablație coroană</span><b>100&nbsp;lei</b></li>
         </ul>
       </div>
 
